@@ -4,7 +4,7 @@ services:
 
   web:
     build: 
-      context: ./project
+      context: ./projects/store-app
       dockerfile: Dockerfile
 
     env_file: 
@@ -14,7 +14,7 @@ services:
       - "8000:80"
 
     volumes: 
-      - "./project:/home/app/src"
+      - "./projects/store-app:/home/app/src"
 
     depends_on: 
       - redis
@@ -23,7 +23,7 @@ services:
   payment_service:
     
     build: 
-      context: ./auction_payment_service
+      context: ./projects/payment-service
       dockerfile: Dockerfile
 
     env_file: 
