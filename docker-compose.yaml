@@ -1,0 +1,50 @@
+version: "3.3"
+
+services: 
+
+  web:
+    build: 
+      context: ./project
+      dockerfile: Dockerfile
+
+    env_file: 
+      - ".env.web.dev"
+
+    ports: 
+      - "8000:80"
+
+    volumes: 
+      - "./project:/home/app/src"
+
+    depends_on: 
+      - redis
+      - payment_service
+
+  payment_service:
+    
+    build: 
+      context: ./auction_payment_service
+      dockerfile: Dockerfile
+
+    env_file: 
+      - ".env.payment.dev"
+
+    ports: 
+      - "9000:80"
+
+    volumes: 
+      - "/home/qz/projects/django-online-store/auction-project/auction_payment_service:/home/app/src"
+
+    depends_on:
+      - redis
+
+  redis:
+    image: bitnami/redis:latest
+
+    environment:
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=VBvc6yBGT0T2GAwn64aZLkh4ioNS8Z8v
+      - REDIS_MASTER_PASSWORD=VBvc6yBGT0T2GAwn64aZLkh4ioNS8Z8v
+
+    ports:
+      - 6379

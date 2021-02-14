@@ -1,0 +1,6 @@
+[submodule "projects/payment-service"]
+	path = projects/payment-service
+	url = https://github.com/adeoluwa-adebiyi/monorepo-payment-service
+[submodule "projects/store-app"]
+	path = projects/store-app
+	url = https://github.com/adeoluwa-adebiyi/monorepo-store-app
