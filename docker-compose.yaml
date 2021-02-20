@@ -19,6 +19,7 @@ services:
     depends_on: 
       - redis
       - payment_service
+      # - store_app_postgres
 
   payment_service:
     
@@ -37,6 +38,7 @@ services:
 
     depends_on:
       - redis
+      # - payment_postgres
 
   redis:
     image: bitnami/redis:latest
@@ -48,3 +50,24 @@ services:
 
     ports:
       - 6379
+
+  # store_app_postgres:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_DB: postgres
+  #     POSTGRES_PASSWORD: test1234$$
+  #   ports:
+  #     - 5432
+
+
+  # payment_postgres:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_DB: postgres
+  #     POSTGRES_PASSWORD: test1234$$
+  #   ports:
+  #     - 5432
